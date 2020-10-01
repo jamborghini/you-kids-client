@@ -1,0 +1,6 @@
+[mat-list-item] {
+  span + mat-icon,
+  mat-icon + span {
+    margin-left: 1rem;
+  }
+}

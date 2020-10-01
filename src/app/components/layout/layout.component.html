@@ -1,0 +1,29 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-nav-list>
+      <h3>Menu</h3>
+      <ng-container *ngFor="let navLink of navLinks">
+        <a [routerLink]="navLink.path" mat-list-item>
+          <mat-icon>{{ navLink.icon }}</mat-icon>
+          <span>{{ navLink.label }}</span>
+        </a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>YouKids</h1>
+      <span class="spacer"></span>
+      <mat-slide-toggle #darkThemeToggle (change)="changeTheme()">Dark Theme</mat-slide-toggle>
+    </mat-toolbar>
+    <div class="router-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
