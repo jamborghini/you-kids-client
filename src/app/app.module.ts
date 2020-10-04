@@ -6,9 +6,11 @@ import {AppComponent} from './app.component';
 import {LayoutComponent} from 'src/app/components/layout/layout.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {VideosComponent} from './components/layout/component/videos/videos.component';
-import {VideoComponent} from './components/layout/component/videos/component/video/video.component';
+import {VideoComponent} from './components/layout/component/video/video.component';
 import {MaterialModule} from 'src/app/modules/material/material.module';
 import {CommonModule} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {CommonModule} from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,24 +1,31 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
     <mat-nav-list>
       <h3>Menu</h3>
-      <ng-container *ngFor="let navLink of navLinks">
-        <a [routerLink]="navLink.path" mat-list-item>
-          <mat-icon>{{ navLink.icon }}</mat-icon>
-          <span>{{ navLink.label }}</span>
+      <a routerLink="videos" routerLinkActive="active" mat-list-item>
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </a>
+      <mat-divider></mat-divider>
+      <ng-container *ngFor="let video of videos">
+        <a [routerLink]="['/videos',video.videoId]" routerLinkActive="active" mat-list-item>
+          <mat-icon>play_circle_filled</mat-icon>
+          <span>{{ video.videoId }}</span>
         </a>
       </ng-container>
     </mat-nav-list>
   </mat-drawer>
 
   <mat-drawer-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <button (click)="drawer.toggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
+      <span class="spacer"></span>
+      <img alt="logo" src="https://img.icons8.com/plasticine/48/000000/pyramid-toy.png"/>
       <h1>YouKids</h1>
       <span class="spacer"></span>
-      <mat-slide-toggle #darkThemeToggle (change)="changeTheme()">Dark Theme</mat-slide-toggle>
+      <mat-slide-toggle color="success" #darkThemeToggle [checked]="test" (change)="changeTheme()">Dark Theme</mat-slide-toggle>
     </mat-toolbar>
     <div class="router-wrapper">
       <router-outlet></router-outlet>

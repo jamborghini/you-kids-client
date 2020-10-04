@@ -1,11 +1,7 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
-
-export interface NavLink {
-  path: string;
-  icon: string;
-  label: string;
-}
+import {Video} from 'src/app/components/layout/component/videos/videos';
+import {VideosService} from 'src/app/services/videos.service';
 
 
 @Component({
@@ -14,19 +10,23 @@ export interface NavLink {
   styleUrls: ['./layout.component.scss'],
 })
 
-export class LayoutComponent implements AfterViewInit {
+
+export class LayoutComponent implements AfterViewInit, OnInit {
 
   @ViewChild('darkThemeToggle') darkThemeToggle: MatSlideToggle;
+  public readonly test: boolean = localStorage.getItem('darkTheme') === '1';
+  public videos: Video[];
 
-  showFiller = false;
-  navLinks: NavLink[] = [
-    {label: 'Home', icon: 'home', path: '/videos/asdasd123'},
-  ];
+  constructor(private readonly videosService: VideosService) {
+  }
+
+  ngOnInit(): void {
+    this.videosService.findAll().subscribe(data => this.videos = data);
+  }
 
   ngAfterViewInit(): void {
     if (localStorage.getItem('darkTheme') === '1') {
       document.body.classList.toggle('alternatheme', true);
-      this.darkThemeToggle.checked = true;
     } else {
       document.body.classList.toggle('alternatheme', false);
     }
